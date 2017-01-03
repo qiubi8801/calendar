@@ -1,4 +1,4 @@
-function Calendar($calendar,strlanguage,isUseIntelSwipe){
+function Calendar($calendar,strlanguage){
     this.wrap = $calendar;
     this.days = [];
     this.rows = 5;
@@ -7,7 +7,6 @@ function Calendar($calendar,strlanguage,isUseIntelSwipe){
     this.month = 0;
     this.tempWidth = $('.day_list',this.wrap).width();
     this.duration = 300;
-    this.useIntelSwipe = isUseIntelSwipe;
 };
 Calendar.prototype = {
     //初化
@@ -29,22 +28,11 @@ Calendar.prototype = {
             _this.goNext();
         });
 
-        // $('.day_item',_this.wrap).on('click',function(){
-        //     var temp = {};
-        //     temp.year = _this.year;
-        //     temp.month = _this.month + 1;
-        //     temp.day = $('span',this).text();
-
-        //     console.log(temp);
-        // })
-
-        if(this.useIntelSwipe){
-            _this._swipe(oList[0],function(){
-                _this.goNext()
-            },function(){
-                _this.goPrev()
-            });
-        }
+        _this._swipe(oList[0],function(){
+            _this.goNext()
+        },function(){
+            _this.goPrev()
+        });
     },
 
     //去上一个月
@@ -121,12 +109,6 @@ Calendar.prototype = {
     update : function(){
         this.render(this.year,this.month,$('.cur_month',this.wrap));
         this.bindEvent();
-    },
-
-    //输出当前日期
-    getSelect : function(){
-        
-
     },
 
     //渲染日历
@@ -221,6 +203,9 @@ Calendar.prototype = {
                     //向又滑动
                     e.preventDefault();
                     fnRight();
+                }
+                if(distanceX){
+                    e.preventDefault();
                 }
                 isSwipe = true;
             }
