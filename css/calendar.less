@@ -1,0 +1,49 @@
+@charset "utf-8";
+@import 'http://img.kybimg.com/css/less/css3.less';
+body{background: #eee; font-size:.6rem;}
+
+//日历展示
+.canlendar{.user-select(none); background:#FFF;
+    .month_switch{height:2.15rem; position:relative;
+        span{position:absolute; top:0; width:2.15rem; height:2.15rem;
+            &.btn_prev{left:0; 
+                &:before{
+                    content:''; position:absolute; left:.9rem; top:.8rem; width:.5rem; height:.5rem; .rotate(45deg); border-left:1px solid #CECECE; border-bottom:1px solid #CECECE;
+                }
+            }
+            &.btn_next{right:0;
+                &:before{
+                    content:''; position:absolute; right:.9rem; top:.8rem; width:.5rem; height:.5rem; .rotate(225deg); border-left:1px solid #CECECE; border-bottom:1px solid #CECECE;
+                }
+            }
+
+            &:active{
+                &:before{border-color:#FF8026;}
+            }
+        }
+        .curMonth{.valign(2.15rem); text-align:center; font-size:.7rem;}
+    }
+
+    .week_hd{
+        ul{.displayFlex();}
+        li{.flex(1); text-align:center; color:#999; height:2.05rem; line-height:2.05rem;}
+    }
+    .day_list{width:100%; overflow:hidden; position:relative;
+        .day_list_inner{position:absolute; left:0; top:0; width:100%;}
+        ul{float:left; width:100%;}
+        li{.displayFlex(); border-top:1px solid #E7E7E7;}
+        .day_item{.flex(1); text-align:center; color:#333; line-height:2.2rem; height:2.2rem; .box-sizing(border-box); padding-top:.5rem;
+            span{display:block; width:1.2rem; height:1.2rem; font-size:.65rem; margin:0 auto; line-height:1.2rem; text-align:center;}
+
+            &.cur_day{
+                span{background:#FF8026; color:#FFF; .border-radius(100%);}
+            }
+            &.prev_month,
+            &.next_month{color:#999;}
+
+            &.marked{
+                span{background:#FF8026; color:#FFF; .border-radius(100%);}
+            }
+        }
+    }
+}

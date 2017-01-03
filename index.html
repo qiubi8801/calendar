@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>签到</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="./css/reset_m.css">
+    <link rel="stylesheet" href="./css/calendar.css">
+</head>
+    <body>
+        <div class="canlendar" id="J_calendar">
+            <div class="month_switch">
+                <span class="canlendar_switch btn_prev"></span>
+                <div class="curMonth">2016年11月</div>
+                <span class="canlendar_switch btn_next"></span>
+            </div>
+            <div class="canlendar_main">
+                <div class="day_switch">
+                    <div class="week_hd">
+                        <ul>
+                            <li>SUN</li>
+                            <li>MON</li>
+                            <li>TUE</li>
+                            <li>WED</li>
+                            <li>THU</li>
+                            <li>FRI</li>
+                            <li>SAT</li>
+                        </ul>
+                    </div>
+                    <div class="day_list">
+                        <div class="day_list_inner">
+                            <ul class="cur_month">
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="./js/zepto-1.1.6.min.js"></script>
+    <script src="./js/calendar.js"></script>
+    <script>
+        $(function(){
+            var oCalendar = $('#J_calendar'),
+                myCal = new Calendar(oCalendar,'zh',true);
+            myCal.init();
+
+            $('.day_item','#J_calendar').on('click',function(){
+                var temp = {};
+                temp.year = myCal.year;
+                temp.month = myCal.month + 1;
+                temp.day = $('span',this).text();
+                $(this).addClass('marked');
+
+                console.log(temp);
+            })
+        })
+    </script>
+</html>
